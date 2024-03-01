@@ -14,6 +14,13 @@ public class Deck {
         size = deck.size();
     }
 
+    public Deck(ArrayList<Card> cards){
+        deck = new ArrayList<Card>();
+        for(int i = 0; i < cards.size(); i++){
+            deck.add(cards.get(i));
+        }
+    }
+
     public boolean isEmpty(){
         return deck.size() == 0;
     }
@@ -22,12 +29,35 @@ public class Deck {
         return deck.size();
     }
 
+    public Card get(int num){
+        return deck.get(num);
+    }
+
+    public void add(Card newCard){
+        deck.add(newCard);
+    }
+
+    public void massAdd(ArrayList<Card> cardsList){
+        for(Card card : cardsList){
+            deck.add(card);
+        }
+    }
+
     public Card deal(){
         if(deck.isEmpty()){
             return null;
         }else{
             size--;
             return deck.get(size);
+        }
+    }
+
+    public void shuffle() {
+        for(int i = deck.size()-1; i > 0; i--){
+            int random = (int)(Math.random() * i);
+            Card storedValue = deck.get(i);
+            deck.set(i,deck.get(random));
+            deck.set(random, storedValue);
         }
     }
 }
