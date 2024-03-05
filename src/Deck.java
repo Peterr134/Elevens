@@ -19,6 +19,7 @@ public class Deck {
         for(int i = 0; i < cards.size(); i++){
             deck.add(cards.get(i));
         }
+        size = deck.size();
     }
 
     public boolean isEmpty(){
@@ -35,11 +36,13 @@ public class Deck {
 
     public void add(Card newCard){
         deck.add(newCard);
+        size++;
     }
 
     public void massAdd(ArrayList<Card> cardsList){
         for(Card card : cardsList){
             deck.add(card);
+            size++;
         }
     }
 
@@ -48,7 +51,7 @@ public class Deck {
             return null;
         }else{
             size--;
-            return deck.get(size);
+            return deck.remove(size);
         }
     }
 

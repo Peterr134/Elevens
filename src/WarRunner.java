@@ -63,6 +63,8 @@ public class WarRunner{
                 }else{
                     System.out.println("Same point value! WARRRR!!");
                     ArrayList<Card> warCards = new ArrayList<Card>();
+                    warCards.add(played1);
+                    warCards.add(played2);
                     while(true) {
                         Card played1War = deck1.deal();
                         warCards.add(played1War);
@@ -70,15 +72,13 @@ public class WarRunner{
                         Card played2War = deck2.deal();
                         warCards.add(played2War);
                         System.out.println("The computer's face-up card is " + played2War);
-                        for (int i = 0; i < 2; i++) {
-                            warCards.add(deck1.deal());
-                            warCards.add(deck2.deal());
-                        }
-                        if(played1War.pointValue() != played2War.pointValue()){
-                            if(played1War.pointValue() > played2War.pointValue()){
-                                System.out.println("You win the war! + " + warCards.size() + " cards!");
+                        warCards.add(deck1.deal());
+                        warCards.add(deck2.deal());
+                        if (played1War.pointValue() != played2War.pointValue()) {
+                            if (played1War.pointValue() > played2War.pointValue()) {
+                                System.out.println("You win the war! +" + warCards.size() + " cards!");
                                 deck1.massAdd(warCards);
-                            }else{
+                            } else {
                                 System.out.println("You lose the war. + " + warCards.size() + " cards to computer");
                                 deck2.massAdd(warCards);
                             }
@@ -87,6 +87,13 @@ public class WarRunner{
                         System.out.println("War continues...");
                     }
                 }
+            }
+            System.out.println("You have " + deck1.size() + " Cards");
+            System.out.println("Computer has " + deck2.size() + " Cards");
+            if(deck1.size() == 0){
+                System.out.println("You lose...");
+            }else if (deck2.size() == 0){
+                System.out.println("You win!");
             }
         }
     }
