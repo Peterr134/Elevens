@@ -12,11 +12,19 @@ public class ElevensRunner {
                 System.out.println(board.toString());
                 System.out.println("Remaning cards in deck: " + board.deckSize());
                 System.out.println("Type the cards you wish to select in this format: 1,2,3");
-                List<Integer> selectedCards = new ArrayList<Integer>();
-                String[] nums = scanner.nextLine().split(",");
-                for (String num : nums) {
-                    selectedCards.add(Integer.parseInt(num));
+                String input = scanner.nextLine();
+                if(input.equals("Win")){
+                    board.win();
+                    System.out.println(board.toString());
+                    System.out.println("Remaning cards in deck: " + board.deckSize());
+                    System.out.println("Type the cards you wish to select in this format: 1,2,3");
+                    input = scanner.nextLine();
                 }
+                    List<Integer> selectedCards = new ArrayList<Integer>();
+                    String[] nums = input.split(",");
+                    for (String num : nums) {
+                        selectedCards.add(Integer.parseInt(num));
+                    }
                 if (board.isLegal(selectedCards)) {
                     board.replaceSelectedCards(selectedCards);
                     if (board.gameIsWon()) {

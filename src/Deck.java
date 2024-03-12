@@ -46,6 +46,11 @@ public class Deck {
         }
     }
 
+    public void removeAll(){
+        deck = new ArrayList<Card>();
+        size = 0;
+    }
+
     public Card deal(){
         if(deck.isEmpty()){
             return null;

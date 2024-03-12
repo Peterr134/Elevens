@@ -82,8 +82,20 @@ public class Card {
      * @return a <code>String</code> containing the rank, suit,
      *         and point value of the card.
      */
+//    @Override
+//    public String toString() {
+//        return rank + " of " + suit + " (point value = " + pointValue + ")";
+//    }
+
     @Override
     public String toString() {
+        if(rank.equals("Jack")){
+            return rank + " of " + suit + " (Combine with a King and Queen)";
+        }else if (rank.equals("Queen")){
+            return rank + " of " + suit + " (Combine with a King and Jack)";
+        }else if (rank.equals("King")){
+            return rank + " of " + suit + " (Combine with a Queen and Jack)";
+        }
         return rank + " of " + suit + " (point value = " + pointValue + ")";
     }
 }

@@ -17,6 +17,7 @@ public class ElevensBoard {
      */
     private static final String[] RANKS =
             {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+            //{"Ace", "10"};
 
     /**
      * The suits of the cards for this game to be sent to the deck.
@@ -29,6 +30,7 @@ public class ElevensBoard {
      */
     private static final int[] POINT_VALUES =
             {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, -10, -100};
+            //{1,10};
 
 
     /**
@@ -209,7 +211,9 @@ public class ElevensBoard {
     public boolean anotherPlayIsPossible() {
         ArrayList<Integer> arrList = new ArrayList<Integer>();
         for(Card card : cards){
-            arrList.add(card.pointValue());
+            if(card != null) {
+                arrList.add(card.pointValue());
+            }
         }
         if(arrList.contains(1) && arrList.contains(10)){
             return true;
@@ -284,5 +288,11 @@ public class ElevensBoard {
             return true;
         }
         return false;
+    }
+
+    public void win(){
+        deck.removeAll();
+        Card[] winCards = {new Card("Jack","Winners",-1), new Card("Queen", "Winners", -10), new Card("King", "Winners", -100)};
+        cards = winCards;
     }
 }
